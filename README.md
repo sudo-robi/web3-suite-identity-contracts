@@ -3,10 +3,33 @@
 [![Rust](https://img.shields.io/badge/Language-Rust-000000?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen?style=for-the-badge)](#testing)
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue?style=for-the-badge&logo=githubactions&logoColor=white)](#)
 
 # Web3 Suite — Identity Contracts
 
 Soroban smart contracts for decentralized identity primitives on the Stellar network. This workspace provides three composable contracts that together enable a complete on-chain identity layer: **DID Registry**, **Verifiable Credentials**, and **KYC Verification**.
+
+---
+
+## Table of Contents
+
+- [Architecture](#architecture)
+- [Contracts](#contracts)
+  - [DID Registry](#did-registry)
+  - [Verifiable Credentials](#verifiable-credentials)
+  - [KYC Verification](#kyc-verification)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Build](#build)
+  - [Test](#test)
+  - [Deploy](#deploy)
+- [Project Structure](#project-structure)
+- [Error Codes](#error-codes)
+- [Security Considerations](#security-considerations)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
 
 ## Architecture
 
@@ -63,6 +86,8 @@ Soroban smart contracts for decentralized identity primitives on the Stellar net
   Apps check: is_verified() + verify_credential() + is_active()
 ```
 
+---
+
 ## Contracts
 
 ### DID Registry
@@ -82,6 +107,8 @@ The DID Registry contract manages Decentralized Identifiers on-chain. Each DID i
 
 **Events:** `DIDCreated`, `DIDUpdated`, `DIDDeactivated`, `DIDTransferred`
 
+---
+
 ### Verifiable Credentials
 
 The Credentials contract enables issuance, verification, and revocation of credentials linked to DIDs. Credentials carry typed claims, optional expiry, and cryptographic signatures.
@@ -98,6 +125,8 @@ The Credentials contract enables issuance, verification, and revocation of crede
 **Storage:** `persistent::Map<BytesN<32>, CredentialRecord>` + issuer/subject index maps
 
 **Events:** `CredentialIssued`, `CredentialRevoked`
+
+---
 
 ### KYC Verification
 
@@ -122,6 +151,8 @@ The KYC contract manages identity verification levels with a verifier registry a
 **Storage:** `persistent::Map<Address, KYCRecord>` + verifier registry
 
 **Events:** `KYCSubmitted`, `KYCApproved`, `KYCRejected`, `VerifierRegistered`
+
+---
 
 ## Getting Started
 
@@ -191,6 +222,8 @@ stellar contract deploy \
   --network testnet
 ```
 
+---
+
 ## Project Structure
 
 ```
@@ -212,6 +245,8 @@ web3-suite-identity-contracts/
 ├── CONTRIBUTING.md
 └── README.md
 ```
+
+---
 
 ## Error Codes
 
@@ -246,6 +281,8 @@ web3-suite-identity-contracts/
 | 7 | `Expired` | KYC verification has expired |
 | 8 | `LevelInsufficient` | KYC level below requirement |
 
+---
+
 ## Security Considerations
 
 - All state-changing functions require authentication via `require_auth()`
@@ -255,9 +292,19 @@ web3-suite-identity-contracts/
 - KYC records auto-expire after 1 year
 - Credential expiry is enforced at verification time
 
+---
+
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/my-feature`)
+3. Commit your changes (`git commit -am 'Add my feature'`)
+4. Push to the branch (`git push origin feat/my-feature`)
+5. Open a Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
 
 ## License
 
